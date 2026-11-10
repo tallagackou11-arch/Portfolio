@@ -7,19 +7,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Clash+Display:wght@400;500;600;700&family=Unbounded:wght@700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --white: #FFFFFF;
-    --offwhite: #F5F8FF;
-    --blue-pale: #EEF3FF;
-    --blue-light: #DBEAFE;
-    --blue-mid: #93C5FD;
-    --blue: #2563EB;
-    --blue-dark: #1D4ED8;
-    --blue-deeper: #1E3A8A;
-    --ink: #0F172A;
-    --ink-light: #334155;
-    --ink-muted: #64748B;
-    --border: #CBD5E1;
+  :racine {
+    --blanc: #FFFFFF;
+    --blanc cassé : #F5F8FF ;
+    --bleu pâle : #EEF3FF ;
+    --lumière bleue : #DBEAFE ;
+    --bleu-mid : #93C5FD ;
+    --bleu : #2563EB ;
+    --bleu foncé : #1D4ED8 ;
+    --bleu-plus profond : #1E3A8A ;
+    --encre : #0F172A ;
+    --ink-light : #334155 ;
+    --encre atténuée : #64748B ;
+    --bordure : #CBD5E1 ;
     --border-light: #E2E8F0;
     --shadow-blue: rgba(37,99,235,0.12);
     --shadow: rgba(15,23,42,0.08);
@@ -29,33 +29,33 @@
     --transition: .3s cubic-bezier(.4,0,.2,1);
   }
   [data-theme="dark"] {
-    --white: #1E293B;
-    --offwhite: #0F172A;
-    --blue-pale: #1E3A8A22;
-    --blue-light: #1D4ED833;
-    --blue-mid: #60A5FA;
-    --blue: #3B82F6;
-    --blue-dark: #2563EB;
-    --blue-deeper: #1E3A8A;
-    --ink: #F1F5F9;
+    --blanc : #1E293B ;
+    --blanc cassé : #0F172A ;
+    --bleu pâle : #1E3A8A22 ;
+    --lumière bleue : #1D4ED833 ;
+    --bleu-mid : #60A5FA ;
+    --bleu : #3B82F6 ;
+    --bleu foncé : #2563EB ;
+    --bleu-plus profond : #1E3A8A ;
+    --encre : #F1F5F9 ;
     --ink-light: #CBD5E1;
-    --ink-muted: #94A3B8;
-    --border: #334155;
+    --encre atténuée : #94A3B8 ;
+    --bordure : #334155 ;
     --border-light: #1E293B;
     --shadow-blue: rgba(59,130,246,0.18);
     --shadow: rgba(0,0,0,0.25);
-    --bg-main: #0F172A;
+    --bg-main : #0F172A ;
     --bg-section: #1E293B;
     --card-bg: #1E293B;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body { font-family:'Satoshi','Plus Jakarta Sans',sans-serif; background:var(--bg-main); color:var(--ink); font-size:15px; line-height:1.7; overflow-x:hidden; transition:background var(--transition),color var(--transition); }
+  corps { police-family:'Satoshi','Plus Jakarta Sans',sans-serif; arrière-plan:var(--bg-main); couleur:var(--ink); taille-police:15px; interligne:1.7; débordement-x:masqué; transition:arrière-plan var(--transition),couleur var(--transition); }
 
-  /* SCROLL PROGRESS BAR */
+  /* BARRE DE PROGRESSION À DÉFILER */
   #scroll-progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--blue),var(--blue-mid)); z-index:99999; width:0%; transition:width .1s linear; border-radius:0 2px 2px 0; }
 
-  /* TOAST */
+  /* GRILLER */
   #toast-container { position:fixed; top:90px; right:24px; z-index:99990; display:flex; flex-direction:column; gap:10px; pointer-events:none; }
   .toast { background:var(--card-bg); border:1.5px solid var(--border-light); border-radius:14px; padding:12px 20px; font-size:.82rem; font-weight:600; color:var(--ink); box-shadow:0 8px 32px var(--shadow); display:flex; align-items:center; gap:10px; pointer-events:all; animation:toastIn .35s ease; max-width:300px; }
   .toast.success { border-color:var(--blue-light); background:var(--blue-pale); color:var(--blue-dark); }
@@ -63,14 +63,14 @@
   @keyframes toastIn { from{transform:translateX(30px);opacity:0} to{transform:none;opacity:1} }
   @keyframes toastOut { to{transform:translateX(30px);opacity:0} }
 
-  /* THEME TOGGLE */
+  /* ACTIVATION/DÉMARRAGE DU THÈME */
   #theme-toggle { position:fixed; bottom:90px; right:28px; z-index:9999; width:46px; height:46px; border-radius:50%; background:var(--card-bg); border:1.5px solid var(--border-light); cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px var(--shadow); transition:transform .2s,box-shadow .2s,background var(--transition); font-size:1.2rem; }
   #theme-toggle:hover { transform:scale(1.1); }
 
-  /* ADMIN TRIGGER */
+  /* DÉCLENCHEUR ADMINISTRATIF */
   #admin-trigger { position:fixed; bottom:28px; right:28px; z-index:9999; width:46px; height:46px; border-radius:50%; background:var(--blue); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px var(--shadow-blue); transition:transform .2s,box-shadow .2s; }
   #admin-trigger:hover { transform:scale(1.1); box-shadow:0 6px 28px var(--shadow-blue); }
-  #admin-trigger svg { width:18px; height:18px; fill:#fff; }
+  #admin-trigger svg { largeur:18px; hauteur:18px; remplissage:#fff; }
 
   /* MODAL */
   .modal-overlay { display:none; position:fixed; inset:0; background:rgba(15,23,42,0.55); backdrop-filter:blur(8px); z-index:10000; align-items:center; justify-content:center; }
@@ -85,7 +85,7 @@
   .btn-primary { margin-top:18px; width:100%; padding:13px; background:var(--blue); color:#fff; border:none; border-radius:12px; font-family:'Plus Jakarta Sans',sans-serif; font-size:.95rem; font-weight:700; cursor:pointer; transition:background .2s; }
   .btn-primary:hover { background:var(--blue-dark); }
 
-  /* ADMIN BAR */
+  /* BARRE D'ADMINISTRATION */
   #admin-bar { display:none; position:fixed; top:0; left:0; right:0; z-index:8000; background:var(--blue-deeper); color:#fff; padding:10px 32px; font-size:.78rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; align-items:center; justify-content:space-between; gap:12px; }
   #admin-bar.show { display:flex; }
   #admin-bar .bar-left { display:flex; align-items:center; gap:10px; }
@@ -105,9 +105,9 @@
   .nav-links a { font-size:.78rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; text-decoration:none; color:var(--ink-muted); transition:color .2s; position:relative; }
   .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--blue); border-radius:2px; transition:width .25s; }
   .nav-links a:hover { color:var(--blue); }
-  .nav-links a:hover::after { width:100%; }
+  .nav-links a:hover::after { largeur:100%; }
 
-  /* VISITOR BADGE in NAV */
+  /* BADGE VISITEUR dans NAV */
   .nav-visitor-badge { display:flex; align-items:center; gap:6px; background:var(--blue-pale); border:1.5px solid var(--blue-light); border-radius:100px; padding:5px 14px; font-size:.72rem; font-weight:700; color:var(--blue); }
   .nav-visitor-badge .vdot { width:6px; height:6px; border-radius:50%; background:#22C55E; animation:pulse 2s infinite; }
 
@@ -116,18 +116,18 @@
   .section-label { font-size:.68rem; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:var(--blue); margin-bottom:14px; font-family:'Space Grotesk',sans-serif; }
   h2.section-title { font-family:'Unbounded',sans-serif; font-size:clamp(1.6rem,3.2vw,2.4rem); font-weight:800; color:var(--ink); line-height:1.18; margin-bottom:52px; letter-spacing:-.03em; }
 
-  /* REVEAL ON SCROLL */
-  .reveal { opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s ease; }
-  .reveal.visible { opacity:1; transform:none; }
+  /* DÉVOILER AU DÉFILEMENT */
+  .reveal { opacité:0; transform:translateY(30px); transition:opacité .7s ease, transform .7s ease; }
+  .reveal.visible { opacité:1; transformation:aucune; }
 
-  /* HERO */
+  /* HÉROS */
   #hero { min-height:94vh; max-width:100%; padding:0; display:flex; align-items:center; position:relative; overflow:hidden; }
   .hero-bg { position:absolute; inset:0; background: radial-gradient(ellipse 70% 60% at 85% 40%,var(--blue-light) 0%,transparent 65%), radial-gradient(ellipse 50% 50% at 5% 90%,var(--blue-pale) 0%,transparent 55%); transition:background var(--transition); }
   .hero-bg::after { content:''; position:absolute; inset:0; background-image:linear-gradient(var(--border-light) 1px,transparent 1px),linear-gradient(90deg,var(--border-light) 1px,transparent 1px); background-size:48px 48px; opacity:.4; }
   .hero-inner { position:relative; max-width:1120px; width:100%; margin:0 auto; padding:0 56px; display:grid; grid-template-columns:1fr 320px; align-items:center; gap:72px; }
   .hero-tag { display:inline-flex; align-items:center; gap:8px; background:var(--blue-pale); border:1.5px solid var(--blue-light); border-radius:100px; padding:7px 18px; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:28px; animation:fadeUp .7s .1s both; }
   .hero-tag .dot { width:7px; height:7px; border-radius:50%; background:var(--blue); animation:pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+  @keyframes pulse { 0%,100%{opacité:1;transform:scale(1)} 50%{opacité:.5;transform:scale(.8)} }
   h1.hero-name { font-family:'Unbounded',sans-serif; font-size:clamp(2.4rem,6vw,4.6rem); font-weight:900; line-height:1.05; color:var(--ink); margin-bottom:14px; animation:fadeUp .7s .2s both; letter-spacing:-.03em; }
   h1.hero-name .name-first { display:block; font-family:'Unbounded',sans-serif; font-weight:900; color:var(--ink); font-size:clamp(2.6rem,6.5vw,5rem); letter-spacing:-.04em; }
   h1.hero-name em { font-style:normal; background:linear-gradient(135deg,var(--blue) 0%,#7C3AED 50%,var(--blue-mid) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; position:relative; font-family:'Unbounded',sans-serif; font-weight:900; font-size:clamp(2.6rem,6.5vw,5rem); display:block; letter-spacing:-.04em; }
@@ -152,13 +152,13 @@
   .hero-photo-input { display:none; }
   @keyframes fadeUp { from{transform:translateY(22px);opacity:0} to{transform:none;opacity:1} }
 
-  /* ABOUT */
+  /* À PROPOS */
   #about { background:var(--bg-section); max-width:100%; padding:0; }
   .about-inner { max-width:1120px; margin:0 auto; padding:100px 56px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
   .about-text p { color:var(--ink-light); line-height:1.85; margin-bottom:18px; font-size:.95rem; }
   .skills-grid { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
   .skill-tag { padding:7px 16px; background:var(--card-bg); border:1.5px solid var(--border-light); border-radius:100px; font-size:.78rem; color:var(--ink-light); font-weight:600; transition:border-color .2s,color .2s,background .2s; position:relative; }
-  .skill-tag:hover { border-color:var(--blue); color:var(--blue); background:var(--blue-pale); }
+  .skill-tag:hover { border-color:var(--blue); couleur:var(--bleu); background:var(--bleu-pâle); }
   .skill-tag .del-btn { display:none; position:absolute; top:-6px; right:-6px; width:16px; height:16px; background:#DC2626; color:#fff; border:none; border-radius:50%; font-size:9px; cursor:pointer; align-items:center; justify-content:center; line-height:1; }
   .admin-active .skill-tag:hover .del-btn { display:flex; }
   .add-skill-row { display:flex; gap:8px; margin-top:16px; }
@@ -166,7 +166,7 @@
   .add-skill-row input:focus { border-color:var(--blue); }
   .add-skill-row button { padding:9px 20px; background:var(--blue); color:#fff; border:none; border-radius:100px; font-size:.78rem; font-weight:700; cursor:pointer; }
 
-  /* PROJECTS */
+  /* PROJETS */
   .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:24px; }
   .project-card { background:var(--card-bg); border:1.5px solid var(--border-light); border-radius:20px; padding:32px; transition:transform .25s,box-shadow .25s,border-color .25s; position:relative; overflow:hidden; }
   .project-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--blue),var(--blue-mid)); transform:scaleX(0); transform-origin:left; transition:transform .35s; }
@@ -188,8 +188,8 @@
   .add-project-btn:hover { border-color:var(--blue); color:var(--blue); }
   .admin-active .add-project-btn { display:flex; }
 
-  /* TESTIMONIALS */
-  #testimonials { background:var(--bg-section); max-width:100%; padding:0; }
+  /* TÉMOIGNAGES */
+  #témoignages { background:var(--bg-section); max-width:100%; padding:0; }
   .testimonials-inner { max-width:1120px; margin:0 auto; padding:100px 56px; }
   .testimonials-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:24px; }
   .testimonial-card { background:var(--card-bg); border:1.5px solid var(--border-light); border-radius:20px; padding:28px; position:relative; transition:transform .25s,box-shadow .25s; }
@@ -198,7 +198,7 @@
   .testimonial-text { font-size:.9rem; color:var(--ink-light); line-height:1.75; margin-bottom:20px; font-style:italic; }
   .testimonial-author { display:flex; align-items:center; gap:12px; }
   .testimonial-avatar { width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--blue-mid)); display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-size:.9rem; font-weight:700; color:#fff; }
-  .testimonial-name { font-size:.85rem; font-weight:700; color:var(--ink); }
+  .nom-testimonial { taille-police:.85rem; épaisseur-police:700; couleur:var(--ink); }
   .testimonial-role { font-size:.75rem; color:var(--ink-muted); }
   .testimonial-stars { color:#F59E0B; font-size:.85rem; margin-bottom:6px; }
   .testimonial-card .card-admin-btns { display:none; position:absolute; top:12px; right:12px; gap:6px; }
@@ -207,9 +207,9 @@
   .add-testimonial-btn:hover { border-color:var(--blue); color:var(--blue); }
   .admin-active .add-testimonial-btn { display:flex; }
 
-  /* EDUCATION */
-  #education { background:var(--bg-section); max-width:100%; padding:0; }
-  .edu-inner { max-width:1120px; margin:0 auto; padding:100px 56px; }
+  /* ÉDUCATION */
+  #éducation { arrière-plan:var(--bg-section); largeur-max:100%; remplissage:0; }
+  .edu-inner { largeur maximale : 1120px; marge : 0 auto; remplissage : 100px 56px; }
   .timeline { position:relative; padding-left:32px; }
   .timeline::before { content:''; position:absolute; left:0; top:8px; bottom:8px; width:2px; border-radius:2px; background:linear-gradient(180deg,var(--blue) 0%,var(--blue-light) 100%); }
   .timeline-item { position:relative; margin-bottom:44px; padding-bottom:44px; border-bottom:1px solid var(--border-light); }
@@ -221,7 +221,7 @@
   .timeline-item p { font-size:.88rem; color:var(--ink-light); line-height:1.75; }
   .timeline-item .item-admin-btns { display:none; position:absolute; top:0; right:0; gap:6px; }
   .admin-active .timeline-item .item-admin-btns { display:flex; }
-  .item-admin-btns button { width:26px; height:26px; border:1.5px solid var(--border-light); background:var(--card-bg); border-radius:7px; cursor:pointer; font-size:.7rem; display:flex; align-items:center; justify-content:center; }
+  .item-admin-btns bouton { largeur:26px; hauteur:26px; bordure:1.5px solide var(--border-light); arrière-plan:var(--card-bg); bordure-radius:7px; curseur:pointeur; taille-police:.7rem; affichage:flex; alignement-éléments:centre; justification-contenu:centre; }
   .item-admin-btns button:hover { background:var(--blue-pale); }
   .item-admin-btns .del { color:#DC2626; }
   .add-edu-btn { display:none; align-items:center; gap:10px; background:none; border:2px dashed var(--border); padding:12px 24px; border-radius:12px; cursor:pointer; color:var(--ink-muted); font-size:.85rem; font-weight:600; margin-top:28px; transition:border-color .2s,color .2s; font-family:'Plus Jakarta Sans',sans-serif; }
@@ -238,11 +238,11 @@
   .contact-links { display:flex; justify-content:center; flex-wrap:wrap; gap:16px; }
   .contact-link { display:flex; align-items:center; gap:10px; padding:14px 26px; border:1.5px solid rgba(255,255,255,.2); border-radius:100px; text-decoration:none; color:#fff; font-size:.85rem; font-weight:600; transition:border-color .2s,background .2s,transform .2s; background:rgba(255,255,255,.08); backdrop-filter:blur(8px); position:relative; }
   .contact-link:hover { border-color:rgba(255,255,255,.7); background:rgba(255,255,255,.15); transform:translateY(-2px); }
-  .contact-link svg { width:18px; height:18px; fill:var(--blue-mid); }
+  .contact-link svg { largeur:18px; hauteur:18px; remplissage:var(--blue-mid); }
   .copy-btn { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); color:#fff; border-radius:6px; padding:3px 8px; font-size:.7rem; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; transition:background .2s; margin-left:4px; }
   .copy-btn:hover { background:rgba(255,255,255,.3); }
 
-  /* ANALYTICS MODAL */
+  /* MODALE ANALYTIQUE */
   #analytics-modal { display:none; position:fixed; inset:0; background:rgba(15,23,42,.6); backdrop-filter:blur(10px); z-index:10002; align-items:center; justify-content:center; }
   #analytics-modal.open { display:flex; }
   .analytics-box { background:var(--card-bg); border:1.5px solid var(--border-light); border-radius:24px; padding:40px; width:700px; max-width:96vw; max-height:90vh; overflow-y:auto; box-shadow:0 40px 100px rgba(15,23,42,.25); animation:modalIn .3s ease; }
@@ -269,21 +269,21 @@
   .page-row:last-child { border-bottom:none; }
   .page-name { flex:1; font-size:.85rem; font-weight:600; color:var(--ink); }
   .page-bar-wrap { width:100px; height:6px; background:var(--border-light); border-radius:3px; overflow:hidden; }
-  .page-bar-fill { height:100%; background:var(--blue); border-radius:3px; }
+  .page-bar-fill { hauteur:100%; arrière-plan:var(--blue); bordure-radius:3px; }
   .page-pct { font-size:.78rem; font-weight:700; color:var(--blue); min-width:36px; text-align:right; }
   .analytics-close { margin-top:24px; width:100%; padding:12px; background:var(--blue); color:#fff; border:none; border-radius:12px; font-family:'Plus Jakarta Sans',sans-serif; font-size:.9rem; font-weight:700; cursor:pointer; transition:background .2s; }
   .analytics-close:hover { background:var(--blue-dark); }
   .whatsapp-note { background:var(--blue-pale); border:1.5px solid var(--blue-light); border-radius:12px; padding:14px 18px; font-size:.82rem; color:var(--blue-dark); display:flex; align-items:center; gap:10px; margin-bottom:24px; }
 
-  /* FOOTER */
-  footer { text-align:center; padding:28px 56px; border-top:1px solid var(--border-light); font-size:.78rem; color:var(--ink-muted); letter-spacing:.05em; font-weight:500; background:var(--bg-main); transition:background var(--transition); }
+  /* PIED DE PAGE */
+  pied de page { text-align:center; padding:28px 56px; border-top:1px solid var(--border-light); font-size:.78rem; color:var(--ink-muted); letter-spacing:.05em; font-weight:500; background:var(--bg-main); transition:background var(--transition); }
 
-  /* EDITABLE */
+  /* MODIFIABLE */
   [contenteditable="true"] { outline:none; border-radius:6px; padding:2px 5px; margin:-2px -5px; transition:background .2s,box-shadow .2s; }
   [contenteditable="true"]:focus { background:var(--blue-pale); box-shadow:0 0 0 2px var(--blue-mid); }
   .admin-active [data-editable]:not(:focus) { box-shadow:0 0 0 1.5px var(--blue-light); background:rgba(219,234,254,.2); }
 
-  /* FORM MODALS */
+  /* MODALES DE FORMULAIRE */
   .form-modal-overlay { display:none; position:fixed; inset:0; background:rgba(15,23,42,.55); backdrop-filter:blur(8px); z-index:10001; align-items:center; justify-content:center; }
   .form-modal-overlay.open { display:flex; }
   .form-modal-box { background:var(--card-bg); border:1.5px solid var(--border-light); border-radius:22px; padding:40px 44px; width:540px; max-width:96vw; max-height:92vh; overflow-y:auto; box-shadow:0 32px 80px rgba(15,23,42,.2); animation:modalIn .3s ease; }
@@ -298,17 +298,17 @@
   .btn-save { padding:11px 28px; background:var(--blue); color:#fff; border:none; border-radius:12px; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; font-size:.88rem; font-weight:700; transition:background .2s; }
   .btn-save:hover { background:var(--blue-dark); }
 
-  /* CV DOWNLOAD BUTTON */
+  /* BOUTON DE TÉLÉCHARGEMENT DU CV */
   .cta-cv { display:inline-flex; align-items:center; gap:8px; background:transparent; color:var(--blue); padding:13px 30px; border-radius:100px; text-decoration:none; font-size:.85rem; font-weight:700; letter-spacing:.04em; border:2px solid var(--blue-light); transition:border-color .2s,background .2s,transform .2s; font-family:'Plus Jakarta Sans',sans-serif; }
   .cta-cv:hover { background:var(--blue-pale); border-color:var(--blue); transform:translateY(-2px); }
-  .cta-cv svg { width:16px; height:16px; fill:var(--blue); }
+  .cta-cv svg { largeur:16px; hauteur:16px; remplissage:var(--bleu); }
 
-  /* RESPONSIVE */
+  /* RÉACTIF */
   @media(max-width:768px){
     nav{padding:0 20px;} .nav-links{display:none;}
     section{padding:64px 20px;}
     .hero-inner{grid-template-columns:1fr;gap:40px;padding:80px 20px;}
-    .hero-photo-wrap{order:-1;}
+    .hero-photo-wrap{ordre:-1;}
     .hero-photo{width:180px;height:220px;border-radius:18px;}
     .hero-stats{gap:24px;}
     .about-inner{grid-template-columns:1fr;gap:40px;padding:64px 20px;}
@@ -319,24 +319,24 @@
   }
 </style>
 </head>
-<body>
+<corps>
 
-<!-- SCROLL PROGRESS -->
+<!-- DÉFILEMENT DE LA PROGRESSION -->
 <div id="scroll-progress"></div>
 <div id="toast-container"></div>
 
-<!-- THEME TOGGLE -->
+<!-- ACTIVATION DU THÈME -->
 <button id="theme-toggle" title="Changer le thème">🌙</button>
 
-<!-- ADMIN TRIGGER -->
+<!-- DÉCLENCHEUR ADMINISTRATIF -->
 <button id="admin-trigger" title="Accès administrateur">
   <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
 </button>
 
-<!-- LOGIN MODAL -->
+<!-- MODALE DE CONNEXION -->
 <div class="modal-overlay" id="login-modal">
   <div class="modal-box">
-    <h3>Espace Admin</h3>
+    <h3>Administration de l'espace</h3>
     <p>Entrez votre mot de passe pour modifier le portfolio.</p>
     <input type="password" id="admin-pw" placeholder="Mot de passe…"/>
     <div class="modal-error" id="pw-error"></div>
@@ -344,7 +344,7 @@
   </div>
 </div>
 
-<!-- ADMIN BAR -->
+<!-- BARRE D'ADMINISTRATION -->
 <div id="admin-bar">
   <div class="bar-left">
     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
@@ -354,12 +354,12 @@
     <button onclick="saveChanges()">💾 Sauvegarder</button>
     <button onclick="openAnalyticsModal()">📊 Statistiques</button>
     <button onclick="changePassword()">🔑 Mot de passe</button>
-    <button onclick="resetVisitors()">🔄 Reset visiteurs</button>
+    <button onclick="resetVisitors()">🔄 Réinitialiser les visiteurs</button>
     <button class="danger" onclick="logoutAdmin()">Déconnexion</button>
   </div>
 </div>
 
-<!-- ANALYTICS MODAL -->
+<!-- MODALE ANALYTIQUE -->
 <div id="analytics-modal">
   <div class="analytics-box">
     <h3>📊 Statistiques du Portfolio</h3>
@@ -396,12 +396,12 @@
     <div class="form-group"><label>Lien (optionnel)</label><input id="proj-link" placeholder="https://github.com/…"/></div>
     <div class="form-modal-actions">
       <button class="btn-cancel" onclick="closeProjectModal()">Annuler</button>
-      <button class="btn-save" onclick="saveProject()">Enregistrer</button>
+      <button class="btn-save" onclick="saveProject()">Enregistreur</button>
     </div>
   </div>
 </div>
 
-<!-- EDUCATION MODAL -->
+<!-- MODALE ÉDUCATION -->
 <div class="form-modal-overlay" id="edu-modal">
   <div class="form-modal-box">
     <h3 id="edu-modal-title">Nouvelle Formation</h3>
@@ -411,12 +411,12 @@
     <div class="form-group"><label>Description</label><textarea id="edu-desc" rows="3"></textarea></div>
     <div class="form-modal-actions">
       <button class="btn-cancel" onclick="closeEduModal()">Annuler</button>
-      <button class="btn-save" onclick="saveEdu()">Enregistrer</button>
+      <button class="btn-save" onclick="saveEdu()">Inscription</button>
     </div>
   </div>
 </div>
 
-<!-- TESTIMONIAL MODAL -->
+<!-- MODALE DE TÉMOIGNAGE -->
 <div class="form-modal-overlay" id="testimonial-modal">
   <div class="form-modal-box">
     <h3 id="test-modal-title">Nouveau Témoignage</h3>
@@ -433,7 +433,7 @@
     </div>
     <div class="form-modal-actions">
       <button class="btn-cancel" onclick="closeTestimonialModal()">Annuler</button>
-      <button class="btn-save" onclick="saveTestimonial()">Enregistrer</button>
+      <button class="btn-save" onclick="saveTestimonial()">Inscription</button>
     </div>
   </div>
 </div>
@@ -445,22 +445,22 @@
     <li><a href="#about">À propos</a></li>
     <li><a href="#projects">Projets</a></li>
     <li><a href="#testimonials">Avis</a></li>
-    <li><a href="#education">Formation</a></li>
+    <li><a href="#éducation">Formation</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-visitor-badge" id="nav-visitor-badge">
     <span class="vdot"></span>
-    <span id="nav-visitor-count">0</span> visiteurs
+    <span id="nav-visitor-count">0</span> visiteur
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HÉROS -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-tag"><span class="dot"></span><span data-editable contenteditable="false">Disponible pour des opportunités</span></div>
-      <h1 class="hero-name"><span class="name-first" data-editable contenteditable="false">Tala</span><em data-editable contenteditable="false">Gackou</em></h1>
+      <h1 class="nom-du-héros"><span class="nom-prénom" data-editable contenteditable="false">Tala</span><em data-editable contenteditable="false">Gackou</em></h1>
       <div class="hero-title" data-editable contenteditable="false">Étudiant en Systèmes, Réseaux & Télécommunications (SRT)</div>
       <p class="hero-bio" data-editable contenteditable="false">Passionné par les infrastructures réseau, la cybersécurité et les télécommunications. En dernière année de Licence à l'Université Alioune DIOP, je cherche à mettre mes compétences au service de projets ambitieux.</p>
       <div class="hero-ctas">
@@ -484,7 +484,7 @@
         <div class="hero-photo-initials" id="hero-initials">TG</div>
         <button class="photo-upload-btn" id="photo-upload-btn" onclick="document.getElementById('photo-input').click()">
           <svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M12 15.2A3.2 3.2 0 0 1 8.8 12 3.2 3.2 0 0 1 12 8.8 3.2 3.2 0 0 1 15.2 12 3.2 3.2 0 0 1 12 15.2M18.2 4h-3.1L13 2H11L8.9 4H5.8C4.8 4 4 4.8 4 5.8v12.4C4 19.2 4.8 20 5.8 20h12.4c1 0 1.8-.8 1.8-1.8V5.8C20 4.8 19.2 4 18.2 4z"/></svg>
-          <span>Changer photo</span>
+          <span>Changer de photo</span>
         </button>
         <input type="file" id="photo-input" class="hero-photo-input" accept="image/*" onchange="uploadPhoto(event)"/>
       </div>
@@ -492,7 +492,7 @@
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- À PROPOS -->
 <section id="about" style="padding:0;max-width:100%;">
   <div class="about-inner">
     <div class="about-text reveal">
@@ -504,7 +504,7 @@
     </div>
     <div class="reveal" style="animation-delay:.15s">
       <div class="section-label">Compétences</div>
-      <h2 class="section-title">Technologies &<br>Outils</h2>
+      <h2 class="section-title">Technologies et<br>Outils</h2>
       <div class="skills-grid" id="skills-grid"></div>
       <div class="add-skill-row" id="add-skill-row" style="display:none;">
         <input type="text" id="new-skill-input" placeholder="Ajouter une compétence…" onkeydown="if(event.key==='Enter') addSkill()"/>
@@ -514,10 +514,10 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- PROJETS -->
 <section id="projects">
-  <div class="section-label reveal">Projets</div>
-  <h2 class="section-title reveal">Mes réalisations</h2>
+  <div class="section-label révélation">Projets</div>
+  <h2 class="section-title révélation">Mes réalisations</h2>
   <div class="projects-grid" id="projects-grid"></div>
   <button class="add-project-btn" onclick="openProjectModal()">
     <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
@@ -525,11 +525,11 @@
   </button>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- TÉMOIGNAGES -->
 <section id="testimonials" style="padding:0;max-width:100%;">
   <div class="testimonials-inner">
-    <div class="section-label reveal">Témoignages</div>
-    <h2 class="section-title reveal">Ce qu'ils disent</h2>
+    <div class="section-label révélation">Témoignages</div>
+    <h2 class="section-title révélation">Ce qu'ils disent</h2>
     <div class="testimonials-grid" id="testimonials-grid"></div>
     <button class="add-testimonial-btn" onclick="openTestimonialModal()">
       <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
@@ -538,8 +538,8 @@
   </div>
 </section>
 
-<!-- EDUCATION -->
-<section id="education" style="padding:0;max-width:100%;">
+<!-- ÉDUCATION -->
+<section id="éducation" style="padding:0;max-width:100%;">
   <div class="edu-inner">
     <div class="section-label reveal">Formation</div>
     <h2 class="section-title reveal">Mon parcours</h2>
@@ -563,23 +563,23 @@
 
 <footer>
   <span data-editable contenteditable="false">© 2025 Tala Gackou — Tous droits réservés</span>
-  &nbsp;·&nbsp;
+  · 
   <span id="footer-visit-count" style="color:var(--blue);font-weight:700;"></span>
 </footer>
 
 <script>
-// ─────────────────────────────────────────────
-//  DEFAULT DATA
-// ─────────────────────────────────────────────
+// ────────────────────────────────────────────
+// DONNÉES PAR DÉFAUT
+// ────────────────────────────────────────────
 const DEFAULT_DATA = {
-  password:"Santerekk",
-  skills:["TCP/IP","OSI Model","Cisco Packet Tracer","Linux","Python","Java","MySQL","Wireshark","VLAN","Routing","SDN","Git","HTML/CSS","XML/XSD","Sécurité Réseau"],
-  projects:[
+  mot de passe : « Santarekk »,
+  compétences : ["TCP/IP", Modèle OSI", Cisco Packet Tracer", Linux", Python", Java", MySQL", Wireshark", VLAN", Routage", SDN", Git, HTML/CSS", XML/XSD, Sécurité Réseau"],
+  projets:[
     {id:1,icon:"🖧",title:"Simulateur de Soutenance",desc:"Application Java/Swing simulant une soutenance avec plus de 20 questions jury sur l'OSI, TCP/UDP, le routage et les protocoles réseau.",tags:["Java","Swing","Réseaux"],link:""},
     {id:2,icon:"📋",title:"MémoireManager",desc:"Outil de gestion de tâches et suivi du temps avec Pomodoro, jalons et statistiques pour la préparation de thèse.",tags:["Java","MySQL","Swing"],link:""},
     {id:3,icon:"🌐",title:"Portfolio XML/XSD",desc:"Document XML structuré avec DTD, schéma XSD et requêtes XPath, démontrant la maîtrise des technologies du web sémantique.",tags:["XML","XSD","XPath","DTD"],link:""}
   ],
-  education:[
+  éducation:[
     {id:1,date:"2022 — 2025",degree:"Licence en Systèmes, Réseaux et Télécommunications (SRT)",school:"Université Alioune DIOP de Bambey",desc:"Spécialisation en administration réseau, protocoles de communication, systèmes embarqués et sécurité informatique."},
     {id:2,date:"2021 — 2022",degree:"Baccalauréat Scientifique (Série S)",school:"Lycée Malick Gallo Diouf de Gate",desc:"Obtention du baccalauréat scientifique avec option mathématiques et physique-chimie."}
   ],
@@ -589,149 +589,149 @@ const DEFAULT_DATA = {
     {icon:"github",label:"GitHub",value:"github.com/talagackou",href:"https://github.com"},
     {icon:"phone",label:"Téléphone",value:"+221 78 434 64 38 / +221 76 010 44 36",href:"tel:+221784346438"}
   ],
-  testimonials:[
-    {id:1,text:"Tala est un étudiant très rigoureux, avec une excellente maîtrise des protocoles réseau et une capacité remarquable à résoudre des problèmes complexes.",name:"Dr. Kasse Yves",role:"Professeur — Université Alioune DIOP",initials:"KY",stars:5},
-    {id:2,text:"Un collaborateur fiable et motivé. Ses projets montrent une vraie maîtrise des technologies réseau et une rigueur dans la documentation.",name:"Responsable Informatique",role:"Encadreur de stage",initials:"RI",stars:5}
+  témoignages :[
+    {id:1,text:"Tala est un étudiant très rigoureux, avec une excellente maîtrise des protocoles réseau et une capacité remarquable à résoudre des problèmes complexes.",name:"Dr. Kasse Yves",role:"Professeur — Université Alioune DIOP",initiales:"KY",stars:5},
+    {id:2,text:"Un collaborateur fiable et motivé. Ses projets démontrent une vraie maîtrise des technologies réseau et une rigueur dans la documentation.",name:"Responsable Informatique",role:"Encadreur de stage",initiales:"RI",stars:5}
   ],
   photo:null
 };
 
 let data = JSON.parse(localStorage.getItem('portfolio_data')||'null') || JSON.parse(JSON.stringify(DEFAULT_DATA));
-let isAdmin = false, editingProjectId = null, editingEduId = null, editingTestimonialId = null;
+soit isAdmin = false, editingProjectId = null, editingEduId = null, editingTestimonialId = null;
 
-// ─────────────────────────────────────────────
-//  VISITOR COUNTER SYSTEM
-// ─────────────────────────────────────────────
+// ────────────────────────────────────────────
+// SYSTÈME DE COMPTAGE DES VISITEURS
+// ────────────────────────────────────────────
 const WHATSAPP_NUMBER = "221784346438";
 const VISIT_KEY = "portfolio_visits_v3";
 
-function getVisitData() {
+fonction getVisitData() {
   try { return JSON.parse(localStorage.getItem(VISIT_KEY)) || initVisitData(); }
   catch { return initVisitData(); }
 }
 
-function initVisitData() {
-  return {
-    totalVisits: 0,
-    uniqueVisitors: 0,
-    visitorIds: [],
-    dailyVisits: {},
-    devices: { desktop: 0, mobile: 0, tablet: 0 },
+fonction initVisitData() {
+  retour {
+    Nombre total de visites : 0,
+    visiteurs uniques : 0,
+    identifiants des visiteurs : [],
+    visites quotidiennes : {},
+    appareils : { ordinateur de bureau : 0, mobile : 0, tablette : 0 },
     sectionViews: { about: 0, projects: 0, testimonials: 0, education: 0, contact: 0 },
-    lastVisit: null,
-    timeOnPage: 0,
-    avgTime: 0
+    dernière visite : null,
+    tempsSurPage : 0,
+    Temps moyen : 0
   };
 }
 
-function saveVisitData(vd) {
+fonction saveVisitData(vd) {
   localStorage.setItem(VISIT_KEY, JSON.stringify(vd));
 }
 
-function getVisitorId() {
+fonction getVisitorId() {
   let id = sessionStorage.getItem('visitor_id');
-  if (!id) {
+  si (!id) {
     id = 'v_' + Date.now() + '_' + Math.random().toString(36).substr(2,9);
     sessionStorage.setItem('visitor_id', id);
   }
-  return id;
+  renvoyer l'identifiant ;
 }
 
-function detectDevice() {
+fonction detectDevice() {
   const ua = navigator.userAgent;
   if (/Mobi|Android/i.test(ua) && !/Tablet|iPad/i.test(ua)) return 'mobile';
-  if (/Tablet|iPad/i.test(ua)) return 'tablet';
-  return 'desktop';
+  si (/Tablet|iPad/i.test(ua)) retourner 'tablette';
+  renvoyer 'bureau';
 }
 
-function getDateKey() {
-  return new Date().toISOString().split('T')[0];
+fonction getDateKey() {
+  renvoie new Date().toISOString().split('T')[0];
 }
 
-function recordVisit() {
+fonction enregistrerVisite() {
   const vd = getVisitData();
   const visitorId = getVisitorId();
-  const today = getDateKey();
+  const aujourd'hui = getDateKey();
   const isNewVisitor = !vd.visitorIds.includes(visitorId);
-  const device = detectDevice();
+  const périphérique = détecterPériphérique();
 
   vd.totalVisits++;
-  if (isNewVisitor) {
-    vd.uniqueVisitors++;
+  si (estNouveauVisiteur) {
+    vd.visiteursuniques++;
     vd.visitorIds.push(visitorId);
-    // Keep only last 1000 IDs
-    if (vd.visitorIds.length > 1000) vd.visitorIds = vd.visitorIds.slice(-1000);
+    // Ne conserver que les 1000 derniers identifiants
+    si (vd.visitorIds.length > 1000) vd.visitorIds = vd.visitorIds.slice(-1000);
   }
-  vd.dailyVisits[today] = (vd.dailyVisits[today] || 0) + 1;
+  vd.dailyVisits[aujourd'hui] = (vd.dailyVisits[aujourd'hui] || 0) + 1;
   vd.devices[device] = (vd.devices[device] || 0) + 1;
   vd.lastVisit = new Date().toISOString();
-  saveVisitData(vd);
+  enregistrer les données de visite(vd);
 
   updateVisitorDisplay(vd.totalVisits);
 
-  // Notify via WhatsApp on first visit of this session
+  // Notification via WhatsApp lors de la première visite de cette session
   if (!sessionStorage.getItem('visit_notified')) {
     sessionStorage.setItem('visit_notified', '1');
-    sendWhatsAppNotification(vd.totalVisits, vd.uniqueVisitors, device);
+    envoyerWhatsAppNotification(vd.totalVisits, vd.uniqueVisitors, appareil);
   }
 }
 
-function sendWhatsAppNotification(total, unique, device) {
+fonction sendWhatsAppNotification(total, unique, appareil) {
   const deviceEmoji = device === 'mobile' ? '📱' : device === 'tablet' ? '📲' : '💻';
   const time = new Date().toLocaleString('fr-FR', {dateStyle:'short', timeStyle:'short'});
   const msg = encodeURIComponent(
     `🔔 *Nouvelle visite sur votre portfolio !*\n\n` +
     `${deviceEmoji} Appareil : ${device}\n` +
     `📅 Date : ${time}\n` +
-    `📊 Total visites : ${total}\n` +
+    `📊 Total des visites : ${total}\n` +
     `👤 Visiteurs uniques : ${unique}\n\n` +
-    `🌐 Portfolio de Tala Gackou`
+    `🌐Portfolio de Tala Gackou`
   );
-  // Opens WhatsApp — user can choose to send or ignore
-  // For auto-notification, use a backend. Here we store the info
-  // and expose a "Send notification" button to admin.
+  // Ouvre WhatsApp — l'utilisateur peut choisir d'envoyer ou d'ignorer le message
+  // Pour les notifications automatiques, utilisez un serveur. C'est ici que nous stockons les informations
+  // et exposer un bouton « Envoyer une notification » à l’administrateur.
   sessionStorage.setItem('pending_wa_msg', decodeURIComponent(msg));
 }
 
-function updateVisitorDisplay(count) {
+fonction updateVisitorDisplay(count) {
   const el1 = document.getElementById('nav-visitor-count');
   const el2 = document.getElementById('hero-visitor-stat');
   const el3 = document.getElementById('footer-visit-count');
-  if (el1) el1.textContent = count.toLocaleString('fr-FR');
-  if (el2) el2.textContent = count.toLocaleString('fr-FR');
+  si (el1) el1.textContent = count.toLocaleString('fr-FR');
+  si (el2) el2.textContent = count.toLocaleString('fr-FR');
   if (el3) el3.textContent = `👁 ${count.toLocaleString('fr-FR')} visites`;
 }
 
-function resetVisitors() {
+fonction resetVisitors() {
   if (!confirm('Réinitialiser TOUS les compteurs de visites ? Cette action est irréversible.')) return;
   localStorage.removeItem(VISIT_KEY);
-  updateVisitorDisplay(0);
+  mettre à jour l'affichage des visiteurs (0);
   showToast('Compteurs réinitialisés.','success');
 }
 
-// Track section views
-function trackSectionView(sectionId) {
+// Vues de la section de suivi
+fonction trackSectionView(sectionId) {
   const vd = getVisitData();
-  if (vd.sectionViews[sectionId] !== undefined) {
+  si (vd.sectionViews[sectionId] !== undefined) {
     vd.sectionViews[sectionId]++;
-    saveVisitData(vd);
+    enregistrer les données de visite(vd);
   }
 }
 
-// ─────────────────────────────────────────────
-//  ANALYTICS MODAL
-// ─────────────────────────────────────────────
-function openAnalyticsModal() {
+// ────────────────────────────────────────────
+// MODALE ANALYTIQUE
+// ────────────────────────────────────────────
+fonction openAnalyticsModal() {
   const vd = getVisitData();
-  const today = getDateKey();
+  const aujourd'hui = getDateKey();
   const todayCount = vd.dailyVisits[today] || 0;
 
-  // Stats grid
+  // Grille de statistiques
   const avgTime = vd.avgTime > 0 ? Math.round(vd.avgTime) + 's' : '—';
   document.getElementById('analytics-stats-grid').innerHTML = `
     <div class="analytics-stat">
       <div class="an-num">${vd.totalVisits.toLocaleString('fr-FR')}</div>
-      <div class="an-label">Visites totales</div>
+      <div class="an-label">Totaux des visites</div>
       <div class="an-sub">Depuis le début</div>
     </div>
     <div class="analytics-stat">
@@ -746,13 +746,13 @@ function openAnalyticsModal() {
     </div>
   `;
 
-  // Weekly bar chart
-  const days = [];
-  for (let i=6; i>=0; i--) {
+  // Graphique à barres hebdomadaire
+  const jours = [];
+  pour (soit i=6; i>=0; i--) {
     const d = new Date(); d.setDate(d.getDate()-i);
-    const key = d.toISOString().split('T')[0];
+    const clé = d.toISOString().split('T')[0];
     const label = d.toLocaleDateString('fr-FR',{weekday:'short'}).replace('.','');
-    days.push({key,label,count:vd.dailyVisits[key]||0});
+    jours.push({clé,label,count:vd.dailyVisits[clé]||0});
   }
   const maxDay = Math.max(...days.map(d=>d.count),1);
   document.getElementById('weekly-chart').innerHTML = days.map(d=>`
@@ -761,146 +761,146 @@ function openAnalyticsModal() {
       <div class="bar-label">${d.label}</div>
     </div>`).join('');
 
-  // Devices
+  // Appareils
   const totalDev = (vd.devices.desktop||0)+(vd.devices.mobile||0)+(vd.devices.tablet||0)||1;
   document.getElementById('device-chart').innerHTML = `
-    <div class="device-badge"><div class="d-icon">💻</div><div class="d-pct">${Math.round((vd.devices.desktop||0)/totalDev*100)}%</div><div class="d-label">Desktop</div></div>
+    <div class="device-badge"><div class="d-icon">💻</div><div class="d-pct">${Math.round((vd.devices.desktop||0)/totalDev*100)}%</div><div class="d-label">Bureau</div></div>
     <div class="device-badge"><div class="d-icon">📱</div><div class="d-pct">${Math.round((vd.devices.mobile||0)/totalDev*100)}%</div><div class="d-label">Mobile</div></div>
     <div class="device-badge"><div class="d-icon">📲</div><div class="d-pct">${Math.round((vd.devices.tablet||0)/totalDev*100)}%</div><div class="d-label">Tablette</div></div>
   `;
 
   // Sections
-  const sections = [
+  sections constantes = [
     {name:'À propos',key:'about'},
     {name:'Projets',key:'projects'},
     {name:'Témoignages',key:'testimonials'},
-    {name:'Formation',key:'education'},
+    {name:'Formation',key:'éducation'},
     {name:'Contact',key:'contact'}
   ];
   const maxSec = Math.max(...sections.map(s=>vd.sectionViews[s.key]||0),1);
   document.getElementById('sections-chart').innerHTML = sections.map(s=>{
     const v = vd.sectionViews[s.key]||0;
     const pct = Math.round(v/maxSec*100);
-    return `<div class="page-row">
+    retourner `<div class="page-row">
       <div class="page-name">${s.name}</div>
       <div class="page-bar-wrap"><div class="page-bar-fill" style="width:${pct}%"></div></div>
       <div class="page-pct">${v}</div>
     </div>`;
-  }).join('');
+  }).rejoindre('');
 
   document.getElementById('analytics-modal').classList.add('open');
 }
 
-function closeAnalyticsModal() {
+fonction closeAnalyticsModal() {
   document.getElementById('analytics-modal').classList.remove('open');
 }
 
 document.getElementById('analytics-modal').addEventListener('click', e => {
-  if (e.target === e.currentTarget) closeAnalyticsModal();
+  si (e.target === e.currentTarget) fermerAnalyticsModal();
 });
 
-// ─────────────────────────────────────────────
-//  THEME TOGGLE
-// ─────────────────────────────────────────────
+// ────────────────────────────────────────────
+// ACTIVATION DU THÈME
+// ────────────────────────────────────────────
 const themeBtn = document.getElementById('theme-toggle');
-let isDark = localStorage.getItem('portfolio_theme') === 'dark';
+soit isDark = localStorage.getItem('portfolio_theme') === 'dark';
 
-function applyTheme() {
+fonction appliquerTheme() {
   document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
   themeBtn.textContent = isDark ? '☀️' : '🌙';
 }
-applyTheme();
+appliquerTheme();
 
 themeBtn.onclick = () => {
-  isDark = !isDark;
+  estSombre = !estSombre;
   localStorage.setItem('portfolio_theme', isDark ? 'dark' : 'light');
-  applyTheme();
+  appliquerTheme();
   showToast(isDark ? '🌙 Mode sombre activé' : '☀️ Mode clair activé');
 };
 
-// ─────────────────────────────────────────────
-//  SCROLL PROGRESS + SECTION TRACKING
-// ─────────────────────────────────────────────
-window.addEventListener('scroll', () => {
+// ────────────────────────────────────────────
+// PROGRESSION DU DÉFILEMENT + SUIVI DES SECTIONS
+// ────────────────────────────────────────────
+fenêtre.addEventListener('scroll', () => {
   const sc = document.documentElement.scrollTop;
   const sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   document.getElementById('scroll-progress').style.width = (sc/sh*100)+'%';
 });
 
-// IntersectionObserver for reveal + section tracking
+// IntersectionObserver pour le suivi des sections et des révélations
 const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
+  entrées.forEach(e => {
+    si (e.isIntersecting) {
       e.target.classList.add('visible');
-      // Track section
+      // Section piste
       const sec = e.target.closest('section');
-      if (sec) trackSectionView(sec.id);
+      si (sec) trackSectionView(sec.id);
     }
   });
-}, { threshold: 0.12 });
+}, { seuil : 0,12 });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// Also observe sections
+// Voir également les sections
 document.querySelectorAll('section[id]').forEach(sec => {
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) trackSectionView(sec.id); });
-  }, { threshold: 0.3 });
+  }, { seuil : 0,3 });
   obs.observe(sec);
 });
 
-// ─────────────────────────────────────────────
-//  TOAST SYSTEM
-// ─────────────────────────────────────────────
-function showToast(msg, type='', duration=3000) {
+// ────────────────────────────────────────────
+// SYSTÈME DE GRILLE-PAIN
+// ────────────────────────────────────────────
+fonction showToast(msg, type='', durée=3000) {
   const t = document.createElement('div');
   t.className = 'toast' + (type?' '+type:'');
   t.textContent = msg;
   document.getElementById('toast-container').appendChild(t);
   setTimeout(() => {
-    t.classList.add('exit');
+    t.classList.add('sortie');
     setTimeout(() => t.remove(), 350);
-  }, duration);
+  }, durée);
 }
 
-// ─────────────────────────────────────────────
-//  CV DOWNLOAD
-// ─────────────────────────────────────────────
-function downloadCV(e) {
-  e.preventDefault();
+// ────────────────────────────────────────────
+// TÉLÉCHARGEMENT DU CV
+// ────────────────────────────────────────────
+fonction downloadCV(e) {
+  e.prévenirDefault();
   const cvUrl = data.cvUrl || null;
-  if (cvUrl) {
+  si (cvUrl) {
     const a = document.createElement('a');
-    a.href = cvUrl; a.download = 'CV_Tala_Gackou.pdf'; a.click();
-  } else {
-    if (isAdmin) {
+    a.href = cvUrl; a.download = 'CV_Tala_Gackou.pdf'; a.cliquez();
+  } autre {
+    si (estAdmin) {
       const input = document.createElement('input');
       input.type='file'; input.accept='.pdf,.doc,.docx';
       input.onchange = ev => {
         const f = ev.target.files[0]; if(!f) return;
         const r = new FileReader();
-        r.onload = ev2 => { data.cvUrl = ev2.target.result; saveChanges(); showToast('✅ CV uploadé avec succès !','success'); };
+        r.onload = ev2 => { data.cvUrl = ev2.target.result; saveChanges(); showToast('✅ CV uploadé avec succès !','success'); } ;
         r.readAsDataURL(f);
       };
       input.click();
-    } else {
+    } autre {
       showToast('📄 CV bientôt disponible ! Contactez-moi directement.');
     }
   }
 }
 
-// ─────────────────────────────────────────────
-//  RENDER FUNCTIONS
-// ─────────────────────────────────────────────
+// ────────────────────────────────────────────
+// FONCTIONS DE RENDU
+// ────────────────────────────────────────────
 function render() { renderSkills(); renderProjects(); renderEdu(); renderContacts(); renderPhoto(); renderTestimonials(); }
 
-function renderSkills() {
+fonction renderSkills() {
   document.getElementById('skills-grid').innerHTML = data.skills.map(s =>
     `<span class="skill-tag">${s}<button class="del-btn" onclick="deleteSkill('${s.replace(/'/g,"\\'")}')">×</button></span>`
-  ).join('');
+  ).rejoindre('');
 }
 
-function renderProjects() {
+fonction renderProjects() {
   document.getElementById('projects-grid').innerHTML = data.projects.map(p => `
     <div class="project-card reveal">
       <div class="card-admin-btns">
@@ -915,7 +915,7 @@ function renderProjects() {
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 }
 
-function renderEdu() {
+fonction renderEdu() {
   document.getElementById('edu-timeline').innerHTML = data.education.map(e => `
     <div class="timeline-item reveal">
       <div class="item-admin-btns">
@@ -930,7 +930,7 @@ function renderEdu() {
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 }
 
-function renderTestimonials() {
+fonction renderTestimonials() {
   document.getElementById('testimonials-grid').innerHTML = data.testimonials.map(t => `
     <div class="testimonial-card reveal">
       <div class="card-admin-btns">
@@ -940,7 +940,7 @@ function renderTestimonials() {
       <div class="testimonial-stars">${'⭐'.repeat(t.stars||5)}</div>
       <div class="testimonial-quote">"</div>
       <div class="testimonial-text">${t.text}</div>
-      <div class="testimonial-author">
+      <div class="auteur-testimonial">
         <div class="testimonial-avatar">${t.initials||'?'}</div>
         <div><div class="testimonial-name">${t.name}</div><div class="testimonial-role">${t.role}</div></div>
       </div>
@@ -950,12 +950,12 @@ function renderTestimonials() {
 
 const ICONS = {
   email: `<svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>`,
-  linkedin: `<svg viewBox="0 0 24 24"><path d="M20.447 20.452H17.12v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.806V9h3.194v1.561h.046c.444-.84 1.53-1.726 3.15-1.726 3.369 0 3.99 2.217 3.99 5.097v6.52h-.739zM5.337 7.433a1.84 1.84 0 1 1 0-3.68 1.84 1.84 0 0 1 0 3.68zm1.607 13.019H3.73V9h3.214v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
-  github: `<svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>`,
-  phone: `<svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>`
+  linkedin : `<svg viewBox="0 0 24 24"><path d="M20.447 20.452H17.12v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.806V9h3.194v1.561h.046c.444-.84 1.53-1.726 3.15-1.726 3.369 0 3.99 2.217 3.99 5.097v6.52h-.739zM5.337 7.433a1.84 1.84 0 1 1 0-3.68 1.84 1.84 0 0 1 0 3.68zm1.607 13.019H3.73V9h3.214v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
+  github : `<svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1,838 1,236 1,838 1,236 1,07 1,835 2,809 1,305 3,495 0,998 0,108 -0,776 0,417 -1,305 0,76 -1,605 -2,665 -0,3 -5,466 -1,332 -5,466 -5,93 0 -1,31 0,465 -2,38 1,235 -3,22 -0,135 -0,303 -0,54 -1,523 0,105 -3,176 0 0 1,005 -0,322 3,3 1,23 0,96 -0,267 1,98 -0,399 3 -0,405 1,02 0,006 2,04 0,138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>`,
+  téléphone : `<svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>`
 };
 
-function renderContacts() {
+fonction renderContacts() {
   document.getElementById('contact-links').innerHTML = data.contacts.map((c,i) => `
     <div style="position:relative;display:inline-flex;align-items:center;gap:6px;">
       <a class="contact-link" href="${c.href}" target="_blank">${ICONS[c.icon]||ICONS.email}<span>${c.label}: <strong>${c.value}</strong></span></a>
@@ -964,58 +964,58 @@ function renderContacts() {
     </div>`).join('');
 }
 
-function copyContact(text, e) {
-  e.preventDefault();
-  navigator.clipboard.writeText(text).then(() => showToast('✅ Copié : '+text,'success'));
+fonction copyContact(texte, e) {
+  e.prévenirDefault();
+  navigator.clipboard.writeText(text).then(() => showToast('✅ Copie : '+text,'succès'));
 }
 
-function renderPhoto() {
+fonction renderPhoto() {
   const img = document.getElementById('profile-img'), ini = document.getElementById('hero-initials');
   if (data.photo) { img.src=data.photo; img.style.display='block'; ini.style.display='none'; }
-  else { img.style.display='none'; ini.style.display='block'; }
+  sinon { img.style.display='none'; ini.style.display='block'; }
   document.getElementById('photo-upload-btn').style.display = isAdmin ? '' : 'none';
 }
 
-// ─────────────────────────────────────────────
-//  ADMIN AUTH
-// ─────────────────────────────────────────────
+// ────────────────────────────────────────────
+// AUTH ADMIN
+// ────────────────────────────────────────────
 document.getElementById('admin-trigger').onclick = () => {
-  if (isAdmin) { logoutAdmin(); return; }
+  si (estAdministrateur) { déconnexionAdministrateur(); retourner; }
   document.getElementById('login-modal').classList.add('open');
   setTimeout(() => document.getElementById('admin-pw').focus(), 100);
 };
 document.getElementById('admin-pw').addEventListener('keydown', e => { if(e.key==='Enter') checkPassword(); });
 
-function checkPassword() {
-  if (document.getElementById('admin-pw').value === data.password) {
-    isAdmin = true;
+fonction vérifierMotDePasse() {
+  si (document.getElementById('admin-pw').value === data.password) {
+    estAdmin = vrai ;
     document.getElementById('login-modal').classList.remove('open');
     document.getElementById('admin-pw').value = '';
     document.getElementById('pw-error').textContent = '';
-    enableAdmin();
-    showToast('✅ Mode admin activé !','success');
-  } else {
+    activerAdmin();
+    showToast('✅ Mode admin activé !','succès');
+  } autre {
     document.getElementById('pw-error').textContent = 'Mot de passe incorrect.';
   }
 }
 
-function enableAdmin() {
+fonction enableAdmin() {
   document.body.classList.add('admin-active');
   document.getElementById('admin-bar').classList.add('show');
   document.querySelectorAll('[data-editable]').forEach(el => el.contentEditable='true');
   document.getElementById('add-skill-row').style.display = 'flex';
   renderContacts(); renderPhoto();
 
-  // Show WhatsApp notification button if pending
+  // Afficher le bouton de notification WhatsApp si en attente
   const pendingMsg = sessionStorage.getItem('pending_wa_msg');
-  if (pendingMsg) {
+  si (message en attente) {
     const vd = getVisitData();
-    showToast(`📊 ${vd.totalVisits} visite(s) enregistrée(s)`, 'success', 5000);
+    showToast(`📊 ${vd.totalVisits} visite(s) enregistrée(s)`, 'succès', 5000);
   }
 }
 
-function logoutAdmin() {
-  isAdmin = false;
+fonction logoutAdmin() {
+  isAdmin = faux ;
   document.body.classList.remove('admin-active');
   document.getElementById('admin-bar').classList.remove('show');
   document.querySelectorAll('[data-editable]').forEach(el => el.contentEditable='false');
@@ -1024,39 +1024,39 @@ function logoutAdmin() {
   showToast('Déconnecté du mode admin.');
 }
 
-function saveChanges() {
+fonction saveChanges() {
   localStorage.setItem('portfolio_data', JSON.stringify(data));
   showToast('💾 Modifications sauvegardées !','success');
 }
 
-function changePassword() {
+fonction changerMotDePasse() {
   const np = prompt('Nouveau mot de passe (min. 4 caractères) :');
   if (np && np.trim().length >= 4) { data.password = np.trim(); saveChanges(); showToast('🔑 Mot de passe mis à jour !','success'); }
   else if (np !== null) { alert('Minimum 4 caractères.'); }
 }
 
-function uploadPhoto(e) {
+fonction uploadPhoto(e) {
   const f = e.target.files[0]; if (!f) return;
   const r = new FileReader();
   r.onload = ev => { data.photo = ev.target.result; renderPhoto(); showToast('📷 Photo mise à jour !','success'); };
   r.readAsDataURL(f);
 }
 
-// ─────────────────────────────────────────────
-//  SKILLS
-// ─────────────────────────────────────────────
-function addSkill() {
+// ────────────────────────────────────────────
+// COMPÉTENCES
+// ────────────────────────────────────────────
+fonction ajouterSkill() {
   const i = document.getElementById('new-skill-input'), v = i.value.trim();
   if (v && !data.skills.includes(v)) { data.skills.push(v); renderSkills(); i.value=''; showToast('✅ Compétence ajoutée','success'); }
 }
-function deleteSkill(s) { data.skills = data.skills.filter(x=>x!==s); renderSkills(); }
+fonction supprimerCompétence(s) { données.compétences = données.compétences.filter(x=>x!==s); afficherCompétences(); }
 
-// ─────────────────────────────────────────────
-//  PROJECTS
-// ─────────────────────────────────────────────
-function openProjectModal(id=null) {
+// ────────────────────────────────────────────
+// PROJETS
+// ────────────────────────────────────────────
+fonction openProjectModal(id=null) {
   editingProjectId = id;
-  if (id) {
+  si (id) {
     const p = data.projects.find(x=>x.id===id);
     document.getElementById('proj-modal-title').textContent='Modifier le projet';
     document.getElementById('proj-icon').value=p.icon;
@@ -1064,7 +1064,7 @@ function openProjectModal(id=null) {
     document.getElementById('proj-desc').value=p.desc;
     document.getElementById('proj-tags').value=p.tags.join(', ');
     document.getElementById('proj-link').value=p.link;
-  } else {
+  } autre {
     document.getElementById('proj-modal-title').textContent='Nouveau projet';
     ['proj-title','proj-desc','proj-tags','proj-link'].forEach(id=>document.getElementById(id).value='');
     document.getElementById('proj-icon').value='🌐';
@@ -1072,49 +1072,49 @@ function openProjectModal(id=null) {
   document.getElementById('project-modal').classList.add('open');
 }
 function closeProjectModal() { document.getElementById('project-modal').classList.remove('open'); }
-function saveProject() {
+fonction saveProject() {
   const title = document.getElementById('proj-title').value.trim(); if(!title){alert('Le titre est requis.');return;}
-  const p = { id:editingProjectId||Date.now(), icon:document.getElementById('proj-icon').value||'🌐', title, desc:document.getElementById('proj-desc').value.trim(), tags:document.getElementById('proj-tags').value.split(',').map(t=>t.trim()).filter(Boolean), link:document.getElementById('proj-link').value.trim() };
-  if (editingProjectId) { data.projects[data.projects.findIndex(x=>x.id===editingProjectId)]=p; }
-  else { data.projects.push(p); }
+  const p = { id:editingProjectId||Date.now(), icon:document.getElementById('proj-icon').value||'🌐', ​​title, desc:document.getElementById('proj-desc').value.trim(), tags:document.getElementById('proj-tags').value.split(',').map(t=>t.trim()).filter(Boolean), link:document.getElementById('proj-link').value.trim() };
+  si (editingProjectId) { data.projects[data.projects.findIndex(x=>x.id===editingProjectId)]=p; }
+  sinon { data.projects.push(p); }
   renderProjects(); closeProjectModal(); showToast('✅ Projet enregistré !','success');
 }
 function deleteProject(id) { if(confirm('Supprimer ce projet ?')){data.projects=data.projects.filter(x=>x.id!==id);renderProjects();} }
 
-// ─────────────────────────────────────────────
-//  EDUCATION
-// ─────────────────────────────────────────────
-function openEduModal(id=null) {
+// ────────────────────────────────────────────
+// ÉDUCATION
+// ────────────────────────────────────────────
+fonction openEduModal(id=null) {
   editingEduId = id;
-  if (id) {
+  si (id) {
     const e = data.education.find(x=>x.id===id);
     document.getElementById('edu-modal-title').textContent='Modifier la formation';
     document.getElementById('edu-date').value=e.date;
     document.getElementById('edu-degree').value=e.degree;
     document.getElementById('edu-school').value=e.school;
     document.getElementById('edu-desc').value=e.desc;
-  } else {
+  } autre {
     document.getElementById('edu-modal-title').textContent='Nouvelle formation';
     ['edu-date','edu-degree','edu-school','edu-desc'].forEach(id=>document.getElementById(id).value='');
   }
   document.getElementById('edu-modal').classList.add('open');
 }
 function closeEduModal() { document.getElementById('edu-modal').classList.remove('open'); }
-function saveEdu() {
+fonction saveEdu() {
   const degree = document.getElementById('edu-degree').value.trim(); if(!degree){alert('Le diplôme est requis.');return;}
   const e = { id:editingEduId||Date.now(), date:document.getElementById('edu-date').value.trim(), degree, school:document.getElementById('edu-school').value.trim(), desc:document.getElementById('edu-desc').value.trim() };
-  if (editingEduId) { data.education[data.education.findIndex(x=>x.id===editingEduId)]=e; }
-  else { data.education.push(e); }
-  renderEdu(); closeEduModal(); showToast('✅ Formation enregistrée !','success');
+  si (editingEduId) { data.education[data.education.findIndex(x=>x.id===editingEduId)]=e; }
+  sinon { data.education.push(e); }
+  renderEdu(); closeEduModal(); showToast('✅ Formation enregistrée !','succès');
 }
 function deleteEdu(id) { if(confirm('Supprimer cette formation ?')){data.education=data.education.filter(x=>x.id!==id);renderEdu();} }
 
-// ─────────────────────────────────────────────
-//  TESTIMONIALS
-// ─────────────────────────────────────────────
-function openTestimonialModal(id=null) {
-  editingTestimonialId = id;
-  if (id) {
+// ────────────────────────────────────────────
+// TÉMOIGNAGES
+// ────────────────────────────────────────────
+fonction openTestimonialModal(id=null) {
+  éditionTestimonialId = id;
+  si (id) {
     const t = data.testimonials.find(x=>x.id===id);
     document.getElementById('test-modal-title').textContent='Modifier le témoignage';
     document.getElementById('test-text').value=t.text;
@@ -1122,7 +1122,7 @@ function openTestimonialModal(id=null) {
     document.getElementById('test-role').value=t.role;
     document.getElementById('test-initials').value=t.initials;
     document.getElementById('test-stars').value=t.stars||5;
-  } else {
+  } autre {
     document.getElementById('test-modal-title').textContent='Nouveau témoignage';
     ['test-text','test-name','test-role','test-initials'].forEach(id=>document.getElementById(id).value='');
     document.getElementById('test-stars').value='5';
@@ -1130,36 +1130,36 @@ function openTestimonialModal(id=null) {
   document.getElementById('testimonial-modal').classList.add('open');
 }
 function closeTestimonialModal() { document.getElementById('testimonial-modal').classList.remove('open'); }
-function saveTestimonial() {
+fonction saveTestimonial() {
   const text = document.getElementById('test-text').value.trim(); if(!text){alert('Le texte est requis.');return;}
   const t = { id:editingTestimonialId||Date.now(), text, name:document.getElementById('test-name').value.trim(), role:document.getElementById('test-role').value.trim(), initials:document.getElementById('test-initials').value.trim().toUpperCase()||'?', stars:parseInt(document.getElementById('test-stars').value) };
   if (editingTestimonialId) { data.testimonials[data.testimonials.findIndex(x=>x.id===editingTestimonialId)]=t; }
-  else { data.testimonials.push(t); }
-  renderTestimonials(); closeTestimonialModal(); showToast('✅ Témoignage enregistré !','success');
+  sinon { data.testimonials.push(t); }
+  renderTémoignages(); closeTestimonialModal(); showToast('✅ Témoignage enregistré !','succès');
 }
 function deleteTestimonial(id) { if(confirm('Supprimer ce témoignage ?')){data.testimonials=data.testimonials.filter(x=>x.id!==id);renderTestimonials();} }
 
-// ─────────────────────────────────────────────
-//  CONTACTS
-// ─────────────────────────────────────────────
-function editContact(i) {
+// ────────────────────────────────────────────
+// CONTACTS
+// ────────────────────────────────────────────
+fonction editContact(i) {
   const c = data.contacts[i];
-  const label = prompt('Label :',c.label); if(label===null)return;
-  const value = prompt('Valeur affichée :',c.value); if(value===null)return;
+  const label = prompt('Étiquette :',c.label); if(label===null)return;
+  const value = prompt('Valeur affichée :',c.value); if(value===null)retour;
   const href = prompt('Lien (href) :',c.href); if(href===null)return;
   data.contacts[i] = {...c,label,value,href}; renderContacts();
 }
 
-// Send WhatsApp notification (opens WhatsApp)
-function sendWANotification() {
+// Envoyer une notification WhatsApp (ouvre WhatsApp)
+fonction sendWANotification() {
   const vd = getVisitData();
   const msg = encodeURIComponent(`🔔 *Portfolio Tala Gackou*\n\n📊 Total visites : ${vd.totalVisits}\n👤 Visiteurs uniques : ${vd.uniqueVisitors}\n📅 Dernier accès : ${new Date().toLocaleString('fr-FR')}`);
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
 }
 
-// ─────────────────────────────────────────────
-//  CLOSE MODALS ON BACKDROP CLICK
-// ─────────────────────────────────────────────
+// ────────────────────────────────────────────
+// FERMER LES FENÊTRES MODALES EN CLIQUANT SUR L'ARRIÈRE-PLAN
+// ────────────────────────────────────────────
 document.getElementById('login-modal').addEventListener('click', e => {
   if (e.target===e.currentTarget){e.currentTarget.classList.remove('open');document.getElementById('admin-pw').value='';document.getElementById('pw-error').textContent='';}
 });
@@ -1167,44 +1167,44 @@ document.getElementById('project-modal').addEventListener('click', e => { if(e.t
 document.getElementById('edu-modal').addEventListener('click', e => { if(e.target===e.currentTarget)closeEduModal(); });
 document.getElementById('testimonial-modal').addEventListener('click', e => { if(e.target===e.currentTarget)closeTestimonialModal(); });
 
-// ─────────────────────────────────────────────
-//  KEYBOARD SHORTCUTS
-// ─────────────────────────────────────────────
+// ────────────────────────────────────────────
+// RACCOURCIS CLAVIER
+// ────────────────────────────────────────────
 document.addEventListener('keydown', e => {
-  if (e.key==='Escape') {
-    closeProjectModal(); closeEduModal(); closeTestimonialModal(); closeAnalyticsModal();
+  si (e.key==='Échappement') {
+    fermerProjectModal(); fermerEduModal(); fermerTestimonialModal(); fermerAnalyticsModal();
     document.getElementById('login-modal').classList.remove('open');
   }
   if (e.ctrlKey && e.key==='s' && isAdmin) { e.preventDefault(); saveChanges(); }
 });
 
-// ─────────────────────────────────────────────
-//  TIME ON PAGE TRACKING
-// ─────────────────────────────────────────────
+// ────────────────────────────────────────────
+// SUIVI DU TEMPS PASSÉ SUR LA PAGE
+// ────────────────────────────────────────────
 const pageStart = Date.now();
 window.addEventListener('beforeunload', () => {
   const vd = getVisitData();
-  const spent = Math.round((Date.now()-pageStart)/1000);
+  const dépensé = Math.round((Date.now()-pageStart)/1000);
   const prev = vd.avgTime || 0;
   vd.avgTime = Math.round((prev + spent) / 2);
-  saveVisitData(vd);
+  enregistrer les données de visite(vd);
 });
 
-// ─────────────────────────────────────────────
-//  WHATSAPP FLOATING BUTTON (admin only shown in bar)
-// ─────────────────────────────────────────────
+// ────────────────────────────────────────────
+// BOUTON FLOTTANT WHATSAPP (visible uniquement par l'administrateur dans la barre)
+// ────────────────────────────────────────────
 
-// ─────────────────────────────────────────────
-//  INIT
-// ─────────────────────────────────────────────
-render();
-recordVisit();
+// ────────────────────────────────────────────
+// INIT
+// ────────────────────────────────────────────
+rendre();
+enregistrerVisite();
 const vd0 = getVisitData();
 updateVisitorDisplay(vd0.totalVisits);
 
-// Welcome toast on first visit
+// Toast de bienvenue lors de la première visite
 if (!sessionStorage.getItem('welcomed')) {
-  sessionStorage.setItem('welcomed','1');
+  sessionStorage.setItem('bienvenu','1');
   setTimeout(() => showToast('👋 Bienvenue sur le portfolio de Tala Gackou !'), 1200);
 }
 </script>
